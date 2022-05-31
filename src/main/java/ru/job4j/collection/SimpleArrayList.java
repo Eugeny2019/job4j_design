@@ -11,7 +11,7 @@ public class SimpleArrayList<T> implements SimpleList<T> {
     private int modCount = 0;
 
     public SimpleArrayList(int capacity) {
-        this.container = (T[]) new Object[capacity];
+        this.container = (T[]) new Object[Math.max(capacity, 16)];
     }
 
     @Override
@@ -53,7 +53,7 @@ public class SimpleArrayList<T> implements SimpleList<T> {
     }
 
     private void grow() {
-        container = Arrays.copyOf(container, container.length * 2);
+        container = Arrays.copyOf(container, Math.max(container.length * 2, 16));
     }
 
     @Override
