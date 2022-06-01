@@ -21,7 +21,7 @@ public class ForwardLinked<T> implements Iterable<T> {
     }
 
     public T deleteFirst() {
-        if (Objects.isNull(head) || Objects.isNull(head.next)) {
+        if (Objects.isNull(head)) {
             throw new NoSuchElementException();
         }
         T oldValue = head.value;
