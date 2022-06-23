@@ -12,4 +12,14 @@ public class User {
         this.children = children;
         this.birthday = birthday;
     }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode() + children * 7 + birthday.hashCode() * 11;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
 }
