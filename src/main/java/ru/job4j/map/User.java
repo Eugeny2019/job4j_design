@@ -27,7 +27,7 @@ public class User {
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        return name.hashCode() + children * 7 + birthday.hashCode() * 11;
     }
 
     @Override

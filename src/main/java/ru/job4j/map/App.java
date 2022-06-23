@@ -19,6 +19,6 @@ public class App {
 
         System.out.println(user1 + " " + map.get(user1));
         System.out.println(user2 + " " + map.get(user2));
-        System.out.println(user1.equals(user2));
+        System.out.println("user1 equals to user2: " + user1.equals(user2));
     }
 }
