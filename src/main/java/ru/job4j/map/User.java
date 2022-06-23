@@ -7,6 +7,18 @@ public class User {
     private int children;
     private Calendar birthday;
 
+    public String getName() {
+        return name;
+    }
+
+    public int getChildren() {
+        return children;
+    }
+
+    public Calendar getBirthday() {
+        return birthday;
+    }
+
     public User(String name, int children, Calendar birthday) {
         this.name = name;
         this.children = children;
@@ -15,11 +27,13 @@ public class User {
 
     @Override
     public int hashCode() {
-        return name.hashCode() + children * 7 + birthday.hashCode() * 11;
+        return super.hashCode();
     }
 
     @Override
     public boolean equals(Object obj) {
-        return super.equals(obj);
+        return this.name.equals(((User) obj).getName())
+                && this.children == ((User) obj).getChildren()
+                && this.birthday.equals(((User) obj).getBirthday());
     }
 }
