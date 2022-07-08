@@ -19,6 +19,9 @@ public class SimpleMap<K, V> implements Map<K, V> {
 
     @Override
     public boolean put(K key, V value) {
+        if (count > LOAD_FACTOR * capacity) {
+            expand();
+        }
         int index = (Objects.isNull(key)) ? 0 : indexFor(hash(key.hashCode()));
         boolean result = Objects.isNull(table[index]);
         if (result) {
@@ -52,17 +55,14 @@ public class SimpleMap<K, V> implements Map<K, V> {
 
     @Override
     public V get(K key) {
-        if (count > LOAD_FACTOR * capacity) {
-            expand();
-        }
         int index = (Objects.isNull(key)) ? 0 : indexFor(hash(key.hashCode()));
-        return table[index] == null ? null : table[index].value;
+        return table[index] == null ? null : (table[index].key.equals(key)) ? table[index].value : null;
     }
 
     @Override
     public boolean remove(K key) {
         int index = (Objects.isNull(key)) ? 0 : indexFor(hash(key.hashCode()));
-        boolean result = !Objects.isNull(table[index]);
+        boolean result = !Objects.isNull(table[index]) && table[index].key.equals(key);
         if (result) {
             table[index] = null;
             count--;
@@ -81,12 +81,10 @@ public class SimpleMap<K, V> implements Map<K, V> {
                 if (expectedModCount != modCount) {
                     throw new ConcurrentModificationException();
                 }
-                int i = index;
-                while (i < capacity && Objects.isNull(table[i])) {
-                    i++;
-                    index = i;
+                while (index < capacity && Objects.isNull(table[index])) {
+                    index++;
                 }
-                return i < capacity;
+                return index < capacity;
             }
 
             public K next() {
