@@ -1,5 +1,6 @@
 package ru.job4j.assertj;
 
+import org.assertj.core.data.Percentage;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -69,13 +70,13 @@ class BoxTest {
     void squareOfSphereIsAbout1256() {
         Box box = new Box(0, 1);
         double square = box.getArea();
-        assertThat(((Double) (square)).toString().contains("12.56")).isTrue();
+        assertThat(square).isCloseTo(12.56, Percentage.withPercentage(0.1));
     }
 
     @Test
     void squareOfCubeIs24() {
         Box box = new Box(8, 2);
         double square = box.getArea();
-        assertThat(square).isEqualTo(24.0);
+        assertThat(square).isCloseTo(24, Percentage.withPercentage(0.0));
     }
 }
