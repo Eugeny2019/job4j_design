@@ -52,14 +52,14 @@ class BoxTest {
     }
 
     @Test
-    void BoxIsKnown() {
+    void boxIsKnown() {
         Box box = new Box(4, 1);
         boolean known = box.isExist();
         assertThat(known).isTrue();
     }
 
     @Test
-    void BoxIsUnknown() {
+    void boxIsUnknown() {
         Box box = new Box(4, -1);
         boolean known = box.isExist();
         assertThat(known).isFalse();
@@ -69,7 +69,7 @@ class BoxTest {
     void squareOfSphereIsAbout1256() {
         Box box = new Box(0, 1);
         double square = box.getArea();
-        assertThat(((Double)(square)).toString().contains("12.56")).isTrue();
+        assertThat(((Double) (square)).toString().contains("12.56")).isTrue();
     }
 
     @Test
