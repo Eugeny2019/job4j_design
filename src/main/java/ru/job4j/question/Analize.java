@@ -1,8 +1,6 @@
 package ru.job4j.question;
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 public class Analize {
@@ -23,18 +21,15 @@ public class Analize {
             currentIds.add(user.getId());
         }
 
-        //calculate added
         temporarySetIds.addAll(previousIds);
         temporarySetIds.addAll(currentIds);
         added = temporarySetIds.size() - previousIds.size();
 
-        //calculate deleted
         temporarySetIds.clear();
         temporarySetIds.addAll(currentIds);
         temporarySetIds.addAll(previousIds);
         deleted = temporarySetIds.size() - currentIds.size();
 
-        //calculate changed
         temporarySet.addAll(previous);
         temporarySet.retainAll(current);
         temporarySetIds.clear();
