@@ -1,41 +1,34 @@
 package ru.job4j.question;
 
-import java.util.HashSet;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 public class Analize {
 
     public static Info diff(Set<User> previous, Set<User> current) {
-        int added;
-        int changed;
-        int deleted;
-        Set<User> temporarySet = new HashSet<>();
-        Set<Integer> temporarySetIds = new HashSet<>();
+        int added = 0;
+        int changed = 0;
+        int deleted = previous.size();
 
-        Set<Integer> previousIds = new HashSet<>();
+        Map<Integer, User> temporaryMap = new HashMap<>();
         for (User user : previous) {
-            previousIds.add(user.getId());
+            temporaryMap.put(user.getId(), user);
         }
-        Set<Integer> currentIds = new HashSet<>();
+
         for (User user : current) {
-            currentIds.add(user.getId());
+            if (temporaryMap.containsKey(user.getId())) {
+                if (temporaryMap.get(user.getId()).equals(user)) {
+                    deleted--;
+                } else {
+                    changed++;
+                }
+            } else {
+                added++;
+            }
+            temporaryMap.put(user.getId(), user);
         }
-
-        temporarySetIds.addAll(previousIds);
-        temporarySetIds.addAll(currentIds);
-        added = temporarySetIds.size() - previousIds.size();
-
-        temporarySetIds.clear();
-        temporarySetIds.addAll(currentIds);
-        temporarySetIds.addAll(previousIds);
-        deleted = temporarySetIds.size() - currentIds.size();
-
-        temporarySet.addAll(previous);
-        temporarySet.retainAll(current);
-        temporarySetIds.clear();
-        temporarySetIds.addAll(previousIds);
-        temporarySetIds.retainAll(currentIds);
-        changed = temporarySetIds.size() - temporarySet.size();
+        deleted -= changed;
 
         return new Info(added, changed, deleted);
     }
