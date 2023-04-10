@@ -26,13 +26,16 @@ public class Config {
 
     private void linesParser(String s) {
         s = s.trim();
-        if (s.contains("#")
-            || !s.contains("=")
+        if (s.length() == 0
+                || s.contains("#")) {
+            return;
+        }
+        if (!s.contains("=")
             || s.startsWith("=")
             || s.matches("\\S*\\s*=") && !s.matches("\\S*\\s*=\\s*\\S*\\s*=")
             || !s.matches("\\S*\\s*=.*") && !s.matches("\\S*\\s*=\\s*\\S*\\s*=") && !s.matches("\\S*\\s*=\\s*\\S*\\s*=\\s*\\S*")
             ) {
-            return;
+            throw new IllegalArgumentException();
         }
 
         values.put(s.substring(0, s.indexOf("=")).trim(), s.substring(s.indexOf("=") + 1).trim());
