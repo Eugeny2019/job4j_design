@@ -32,8 +32,7 @@ public class Config {
         }
         if (!s.contains("=")
             || s.startsWith("=")
-            || s.matches("\\S*\\s*=") && !s.matches("\\S*\\s*=\\s*\\S*\\s*=")
-            || !s.matches("\\S*\\s*=.*") && !s.matches("\\S*\\s*=\\s*\\S*\\s*=") && !s.matches("\\S*\\s*=\\s*\\S*\\s*=\\s*\\S*")
+            || s.endsWith("=") && s.indexOf("=") == s.lastIndexOf("=")
             ) {
             throw new IllegalArgumentException();
         }
