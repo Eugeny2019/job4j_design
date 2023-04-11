@@ -18,30 +18,25 @@ public class Config {
 
     public void load() {
         try (BufferedReader read = new BufferedReader(new FileReader(this.path))) {
-            read.lines().forEach(s -> parseLines(checkMatchesPattern(uncheckedLines(s))));
+            read.lines().map(String::trim)
+                    .map(s -> (s.contains("#")) ? s.substring(0, s.indexOf("#")).trim() : s)
+                    .filter(this::uncheckedLines)
+                    .filter(this::checkMatchesPattern)
+                    .forEach(this::parseLines);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private String uncheckedLines(String s) {
-        s = s.trim();
-        return (s.startsWith("#")) ? "" : s;
+    private boolean uncheckedLines(String s) {
+        return !(s.isEmpty() || s.startsWith("#"));
     }
 
-    private String checkMatchesPattern(String s) {
-        if (s.isEmpty()) {
-            return "";
+    private boolean checkMatchesPattern(String s) {
+        if (!s.contains("=") || s.startsWith("=") || s.indexOf("=") == s.length() - 1) {
+            throw new IllegalArgumentException("The string '%s' has a pattern 'key=value' violation".formatted(s));
         }
-        s = (s.contains("#")) ?  s.substring(0, s.indexOf("#")).trim() : s;
-
-        if (!s.contains("=")
-                || s.startsWith("=")
-                || s.endsWith("=") && s.indexOf("=") == s.lastIndexOf("=")
-        ) {
-            throw new IllegalArgumentException();
-        }
-        return s;
+        return true;
     }
 
     private void parseLines(String s) {
