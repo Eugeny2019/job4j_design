@@ -18,27 +18,37 @@ public class Config {
 
     public void load() {
         try (BufferedReader read = new BufferedReader(new FileReader(this.path))) {
-            read.lines().forEach(this::linesParser);
+            read.lines().forEach(s -> parseLines(checkMatchesPattern(uncheckedLines(s))));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void linesParser(String s) {
+    private String uncheckedLines(String s) {
         s = s.trim();
-        if (s.length() == 0
-                || s.contains("#")) {
-            return;
+        return (s.startsWith("#")) ? "" : s;
+    }
+
+    private String checkMatchesPattern(String s) {
+        if (s.isEmpty()) {
+            return "";
         }
+        s = (s.contains("#")) ?  s.substring(0, s.indexOf("#")).trim() : s;
+
         if (!s.contains("=")
-            || s.startsWith("=")
-            || s.endsWith("=") && s.indexOf("=") == s.lastIndexOf("=")
-            ) {
+                || s.startsWith("=")
+                || s.endsWith("=") && s.indexOf("=") == s.lastIndexOf("=")
+        ) {
             throw new IllegalArgumentException();
         }
+        return s;
+    }
 
+    private void parseLines(String s) {
+        if (s.isEmpty()) {
+            return;
+        }
         values.put(s.substring(0, s.indexOf("=")).trim(), s.substring(s.indexOf("=") + 1).trim());
-
     }
 
     public String value(String key) {

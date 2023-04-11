@@ -21,7 +21,7 @@ public class ConfigTest {
         Config config = new Config(path);
         config.load();
         assertThat(config.value("name")).isEqualTo("Petr Arsentev");
-        assertThat(config.value("set")).isEqualTo(null);
+        assertThat(config.value("set")).isEqualTo("Set[]");
     }
 
     @Test(expected = IllegalArgumentException.class)
