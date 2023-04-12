@@ -19,7 +19,6 @@ public class Config {
     public void load() {
         try (BufferedReader read = new BufferedReader(new FileReader(this.path))) {
             read.lines().map(String::trim)
-                    .map(s -> (s.contains("#")) ? s.substring(0, s.indexOf("#")).trim() : s)
                     .filter(this::uncheckedLines)
                     .filter(this::checkMatchesPattern)
                     .forEach(this::parseLines);
