@@ -8,24 +8,15 @@ public class Analysis {
         try (BufferedReader reader = new BufferedReader(new FileReader(source));
              BufferedWriter writer = new BufferedWriter(new FileWriter(target))) {
             String line;
-            StringBuilder outputString = new StringBuilder();
-            boolean mayToWrite = false;
+            boolean isError = false;
             while ((line = reader.readLine()) != null) {
-                if (!mayToWrite) {
-                    if (line.contains("400") || line.contains("500")) {
-                        mayToWrite = true;
-                        outputString.append(line.split(" ")[1]);
-                        outputString.append(";");
-                    }
-                } else {
-                    if (line.contains("200") || line.contains("300")) {
-                        mayToWrite = false;
-                        outputString.append(line.split(" ")[1]);
-                        outputString.append(";");
-                        writer.write(outputString.toString());
-                        writer.write(System.lineSeparator());
-                        outputString.delete(0, outputString.length());
-                    }
+                if (line.matches("[400|500].*") && !isError) {
+                    isError = true;
+                    writer.write(line.split(" ")[1] + ";");
+                }
+                if (line.matches("[200|300].*") && isError) {
+                    isError = false;
+                    writer.write(line.split(" ")[1] + ";" + System.lineSeparator());
                 }
             }
 
@@ -33,6 +24,7 @@ public class Analysis {
             throw new RuntimeException(e);
         }
     }
+
     public static void main(String[] args) {
         Analysis analysis = new Analysis();
         analysis.unavailable("data/server.log", "data/target.csv");
