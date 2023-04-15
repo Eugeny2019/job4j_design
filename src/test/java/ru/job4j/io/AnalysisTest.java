@@ -11,8 +11,6 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class AnalysisTest {
 
-    //    @Test
-//    void checkForTwo400And500A200And300(@TempDir Path tempDir) throws IOException {
     @Test
     void checkForTwo400And500And200And300(@TempDir Path tempDir) throws IOException {
 
@@ -69,8 +67,6 @@ public class AnalysisTest {
     void checkForTwo400And500AndOne200And300(@TempDir Path tempDir) throws IOException {
 
         File source = tempDir.resolve("source.txt").toFile();
-        System.out.println(tempDir);
-
         try (PrintWriter writer = new PrintWriter(new BufferedOutputStream(new FileOutputStream(source)))) {
             writer.write("200 10:56:01" + System.lineSeparator()
                     + "500 10:57:01" + System.lineSeparator()
