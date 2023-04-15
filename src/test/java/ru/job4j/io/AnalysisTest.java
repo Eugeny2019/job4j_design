@@ -18,12 +18,12 @@ public class AnalysisTest {
 
         File source = tempDir.resolve("source.txt").toFile();
         try (PrintWriter writer = new PrintWriter(new BufferedOutputStream(new FileOutputStream(source)))) {
-            writer.write("200 10:56:01" + System.lineSeparator() +
-                    "500 10:57:01" + System.lineSeparator() +
-                    "400 10:58:01" + System.lineSeparator() +
-                    "300 10:59:01" + System.lineSeparator() +
-                    "500 11:01:02" + System.lineSeparator() +
-                    "200 11:02:02");
+            writer.write("200 10:56:01" + System.lineSeparator()
+                    + "500 10:57:01" + System.lineSeparator()
+                    + "400 10:58:01" + System.lineSeparator()
+                    + "300 10:59:01" + System.lineSeparator()
+                    + "500 11:01:02" + System.lineSeparator()
+                    + "200 11:02:02");
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -36,8 +36,8 @@ public class AnalysisTest {
         try (BufferedReader in = new BufferedReader(new FileReader(target))) {
             result = in.lines().toList();
         }
-        List<String> correctResult = List.of("10:57:01;10:59:01;, " +
-                "11:01:02;11:02:02;");
+        List<String> correctResult = List.of("10:57:01;10:59:01;, "
+                + "11:01:02;11:02:02;");
         assertThat(result.toString()).isEqualTo(correctResult.toString());
     }
 
@@ -46,9 +46,9 @@ public class AnalysisTest {
 
         File source = tempDir.resolve("source.txt").toFile();
         try (PrintWriter writer = new PrintWriter(new BufferedOutputStream(new FileOutputStream(source)))) {
-            writer.write("200 10:56:01" + System.lineSeparator() +
-                    "300 10:57:01" + System.lineSeparator() +
-                    "200 10:58:01");
+            writer.write("200 10:56:01" + System.lineSeparator()
+                    + "300 10:57:01" + System.lineSeparator()
+                    + "200 10:58:01");
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -72,12 +72,12 @@ public class AnalysisTest {
         System.out.println(tempDir);
 
         try (PrintWriter writer = new PrintWriter(new BufferedOutputStream(new FileOutputStream(source)))) {
-            writer.write("200 10:56:01" + System.lineSeparator() +
-                    "500 10:57:01" + System.lineSeparator() +
-                    "400 10:58:01" + System.lineSeparator() +
-                    "300 10:59:01" + System.lineSeparator() +
-                    "200 10:59:01" + System.lineSeparator() +
-                    "500 11:01:02");
+            writer.write("200 10:56:01" + System.lineSeparator()
+                    + "500 10:57:01" + System.lineSeparator()
+                    + "400 10:58:01" + System.lineSeparator()
+                    + "300 10:59:01" + System.lineSeparator()
+                    + "200 10:59:01" + System.lineSeparator()
+                    + "500 11:01:02");
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -90,8 +90,8 @@ public class AnalysisTest {
         try (BufferedReader in = new BufferedReader(new FileReader(target))) {
             result = in.lines().toList();
         }
-        List<String> correctResult = List.of("10:57:01;10:59:01;, " +
-                "11:01:02;");
+        List<String> correctResult = List.of("10:57:01;10:59:01;, "
+                + "11:01:02;");
         assertThat(result.toString()).isEqualTo(correctResult.toString());
     }
 }
