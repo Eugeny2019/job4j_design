@@ -10,11 +10,11 @@ public class Analysis {
             String line;
             boolean isError = true;
             while ((line = reader.readLine()) != null) {
-                if ((line.startsWith("400") || line.startsWith("500")) == isError || !(line.startsWith("400") || line.startsWith("500")) == !isError) {
+                if ((line.startsWith("400") || line.startsWith("500")) == isError) {
+                    writer.append(line.split(" ")[1])
+                            .append(";")
+                            .append((!isError) ? System.lineSeparator() : "");
                     isError = !isError;
-                    writer.append(line.split(" ")[1]);
-                    writer.append(";");
-                    writer.append((isError) ? System.lineSeparator() : "");
                 }
             }
 
