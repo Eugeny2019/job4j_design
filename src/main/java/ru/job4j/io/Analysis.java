@@ -10,8 +10,7 @@ public class Analysis {
             String line;
             boolean isError = true;
             while ((line = reader.readLine()) != null) {
-                if ((line.startsWith("400") || line.startsWith("500")) == isError
-                        || !(line.startsWith("400") || line.startsWith("500")) == !isError) {
+                if ((line.startsWith("400") || line.startsWith("500")) == isError || !(line.startsWith("400") || line.startsWith("500")) == !isError) {
                     isError = !isError;
                     writer.append(line.split(" ")[1]);
                     writer.append(";");
