@@ -4,29 +4,39 @@ import java.util.Objects;
 
 public class FileProperty {
 
-    private long size;
+    private final long size;
+    private final String name;
+    private final String absolutePath;
+    private boolean isSame = false;
 
-    private String name;
-
-    public FileProperty(long size, String name) {
+    public FileProperty(long size, String name, String absolutePath) {
         this.size = size;
         this.name = name;
+        this.absolutePath = absolutePath;
     }
 
     public long getSize() {
         return size;
     }
 
-    public void setSize(long size) {
-        this.size = size;
-    }
-
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public boolean getSame() {
+        return isSame;
+    }
+
+    public void setSame(boolean same) {
+        isSame = same;
+    }
+
+    public String getAbsolutePath() {
+        return absolutePath;
+    }
+
+    public boolean hasSameName(FileProperty fileProperty) {
+        return this.equals(fileProperty);
     }
 
     @Override

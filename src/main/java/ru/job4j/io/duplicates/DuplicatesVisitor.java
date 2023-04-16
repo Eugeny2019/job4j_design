@@ -9,20 +9,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
-    private final List<FileData> fileDatas = new ArrayList<>(1000);
+    private final List<FileProperty> fileProperties = new ArrayList<>(1000);
 
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-        FileData fileData = new FileData(file);
+        FileProperty newFileProperty = new FileProperty(file.toFile().length(),
+                                                        file.toFile().getName(),
+                                                        file.toFile().getAbsolutePath());
 
-        for (FileData fd : fileDatas) {
-            if (fd.hasSame(fileData.getFileProperty())) {
-                System.out.println(fd.toPrintString());
-                System.out.println(fileData.toPrintString());
+        for (FileProperty fileProperty : fileProperties) {
+            if (fileProperty.hasSameName(newFileProperty)) {
+                fileProperty.setSame(true);
+                newFileProperty.setSame(true);
             }
         }
-        fileDatas.add(fileData);
+        fileProperties.add(newFileProperty);
 
         return super.visitFile(file, attrs);
+    }
+
+    public void printSameFiles() {
+        fileProperties.stream().filter(FileProperty::getSame).forEach(fileProperty -> System.out.println(fileProperty.getAbsolutePath()));
     }
 }
