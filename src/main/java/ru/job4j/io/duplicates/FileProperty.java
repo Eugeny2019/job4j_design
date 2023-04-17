@@ -6,13 +6,10 @@ public class FileProperty {
 
     private final long size;
     private final String name;
-    private final String absolutePath;
-    private boolean isSame = false;
 
-    public FileProperty(long size, String name, String absolutePath) {
+    public FileProperty(long size, String name) {
         this.size = size;
         this.name = name;
-        this.absolutePath = absolutePath;
     }
 
     public long getSize() {
@@ -21,22 +18,6 @@ public class FileProperty {
 
     public String getName() {
         return name;
-    }
-
-    public boolean getSame() {
-        return isSame;
-    }
-
-    public void setSame(boolean same) {
-        isSame = same;
-    }
-
-    public String getAbsolutePath() {
-        return absolutePath;
-    }
-
-    public boolean hasSameName(FileProperty fileProperty) {
-        return this.equals(fileProperty);
     }
 
     @Override
