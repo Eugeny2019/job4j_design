@@ -88,9 +88,9 @@ class ArgsNameTest {
 
     @Test
     void whenNoHyphenPrefixThenExceptionThrown() {
-        assertThatThrownBy(() -> ArgsName.of(new String[]{"-Xmx=512", "request=?msg=Exit="}))
+        assertThatThrownBy(() -> ArgsName.of(new String[]{"-Xmx=512", "reques-t=?msg=Exit="}))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageMatching("^.+")
-                .hasMessageContaining("Error: This argument 'request=?msg=Exit=' does not start with a '-' character");
+                .hasMessageContaining("Error: This argument 'reques-t=?msg=Exit=' does not start with a '-' character");
     }
 }

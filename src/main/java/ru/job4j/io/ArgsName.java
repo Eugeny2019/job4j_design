@@ -16,17 +16,17 @@ public class ArgsName {
 
     private void parse(String[] args) {
         for (String argument : args) {
-            if (!argument.contains("-")) {
-                throw new IllegalArgumentException("Error: This argument '" + argument + "' does not start with a '-' character");
+            if (!argument.startsWith("-")) {
+                throw new IllegalArgumentException(String.format("Error: This argument '%s' does not start with a '-' character", argument));
             }
             if (argument.startsWith("-=")) {
-                throw new IllegalArgumentException("Error: This argument '" + argument + "' does not contain a key");
+                throw new IllegalArgumentException(String.format("Error: This argument '%s' does not contain a key", argument));
             }
             if (!argument.contains("=")) {
-                throw new IllegalArgumentException("Error: This argument '" + argument + "' does not contain an equal sign");
+                throw new IllegalArgumentException(String.format("Error: This argument '%s' does not contain an equal sign", argument));
             }
             if (argument.substring(argument.indexOf("=")).length() == 1) {
-                throw new IllegalArgumentException("Error: This argument '" + argument + "' does not contain a value");
+                throw new IllegalArgumentException(String.format("Error: This argument '%s' does not contain a value", argument));
             }
 
             String key = argument.substring(1, argument.indexOf("="));
