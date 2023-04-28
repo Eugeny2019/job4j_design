@@ -13,7 +13,7 @@ public class Zip {
         argsName = ArgsName.of(args);
         parseArgsNames();
         try {
-            List<Path> paths = Search.search(Path.of(argsName.get("d")), p -> p.toFile().getName().endsWith(argsName.get("e")));
+            List<Path> paths = Search.search(Path.of(argsName.get("d")), p -> !p.toFile().getName().endsWith(argsName.get("e")));
             packFiles(paths, new File(argsName.get("o")));
         } catch (IOException e) {
             throw new RuntimeException(e);
