@@ -37,8 +37,12 @@ public class Zip {
     }
 
     private static void validate(ArgsName argsName) {
-        argsName.get("e");
-        argsName.get("o");
+        if (!argsName.get("e").matches("^\\.\\S+")) {
+            throw new IllegalArgumentException(String.format("Argument e is a file extension and must starts with . and has 1 or more letters after: %s", argsName.get("e")));
+        }
+        if (!argsName.get("o").endsWith(".zip")) {
+            throw new IllegalArgumentException(String.format("Argument o is a zip-file and must ends with .zip: %s", argsName.get("o")));
+        }
         File file = new File(argsName.get("d"));
         if (!file.isDirectory()) {
             throw new IllegalArgumentException(String.format("Not directory %s", file.getAbsoluteFile()));
