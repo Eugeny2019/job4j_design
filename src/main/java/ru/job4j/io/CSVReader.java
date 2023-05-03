@@ -48,22 +48,24 @@ public class CSVReader {
                 }
             }
 
-            PrintStream outStream = (argsName.get("out").equals("stdout")) ? System.out : new PrintStream(new FileOutputStream(argsName.get("out")));
-            for (int i = 0; i < filter.length; i++) {
-                outStream.printf("%s", filter[i]);
-                if (i < filter.length - 1) {
-                    outStream.print(argsName.get("delimiter"));
-                }
-            }
-            outStream.print(System.lineSeparator());
-            for (int j = 0; j < data.get(0).size(); j++) {
-                for (int k = 0; k < data.size(); k++) {
-                    outStream.printf("%s", data.get(k).get(j));
-                    if (k < data.size() - 1) {
+            try (PrintStream outStream = ("stdout".equals(argsName.get("out")))
+                    ? System.out : new PrintStream(new FileOutputStream(argsName.get("out")))) {
+                for (int i = 0; i < filter.length; i++) {
+                    outStream.printf("%s", filter[i]);
+                    if (i < filter.length - 1) {
                         outStream.print(argsName.get("delimiter"));
                     }
                 }
                 outStream.print(System.lineSeparator());
+                for (int j = 0; j < data.get(0).size(); j++) {
+                    for (int k = 0; k < data.size(); k++) {
+                        outStream.printf("%s", data.get(k).get(j));
+                        if (k < data.size() - 1) {
+                            outStream.print(argsName.get("delimiter"));
+                        }
+                    }
+                    outStream.print(System.lineSeparator());
+                }
             }
         }
     }
