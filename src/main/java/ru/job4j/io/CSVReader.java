@@ -10,21 +10,24 @@ import java.util.*;
 public class CSVReader {
     public static void handle(ArgsName argsName) throws Exception {
         try (Scanner sc = new Scanner(new FileInputStream(argsName.get("path")))) {
+            sc.useLocale(Locale.getDefault());
             sc.useDelimiter(System.lineSeparator());
             if (!sc.hasNextLine()) {
                 throw new NoSuchElementException(String.format("There is no headlines in %s", argsName.get("path")));
             }
-            Map<Integer, String> headsByNumbers = new HashMap<>();
+
             String[] filter = argsName.get("filter").split(",");
             String[] headlines = sc.nextLine().split(argsName.get("delimiter"));
+
+            int numberOfMatches = 0;
             for (String s : filter) {
-                for (int i = 0; i < headlines.length; i++) {
-                    if (headlines[i].equals(s)) {
-                        headsByNumbers.putIfAbsent(i, s);
+                for (String headline : headlines) {
+                    if (s.equals(headline)) {
+                        numberOfMatches++;
                     }
                 }
             }
-            if (headsByNumbers.size() != filter.length) {
+            if (numberOfMatches != filter.length) {
                 throw new NoSuchElementException(String.format("Not all colunms from %s are present in %s", argsName.get("filter"), argsName.get("path")));
             }
             if (!sc.hasNextLine()) {
@@ -36,9 +39,12 @@ public class CSVReader {
             }
             while (sc.hasNextLine()) {
                 String[] datas = sc.nextLine().split(argsName.get("delimiter"));
-                int i = 0;
-                for (Integer key : headsByNumbers.keySet()) {
-                    data.get(i++).add(datas[key]);
+                for (int i = 0; i < filter.length; i++) {
+                    for (int j = 0; j < headlines.length; j++) {
+                        if (headlines[j].equals(filter[i])) {
+                            data.get(i).add(datas[j]);
+                        }
+                    }
                 }
             }
 
@@ -46,7 +52,7 @@ public class CSVReader {
             for (int i = 0; i < filter.length; i++) {
                 outStream.printf("%s", filter[i]);
                 if (i < filter.length - 1) {
-                    outStream.print(";");
+                    outStream.print(argsName.get("delimiter"));
                 }
             }
             outStream.print(System.lineSeparator());
@@ -54,7 +60,7 @@ public class CSVReader {
                 for (int k = 0; k < data.size(); k++) {
                     outStream.printf("%s", data.get(k).get(j));
                     if (k < data.size() - 1) {
-                        outStream.print(";");
+                        outStream.print(argsName.get("delimiter"));
                     }
                 }
                 outStream.print(System.lineSeparator());
