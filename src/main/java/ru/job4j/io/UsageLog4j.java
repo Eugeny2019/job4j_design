@@ -12,10 +12,11 @@ public class UsageLog4j {
         int age = 33;
         char f = 'f';
         byte b = -12;
+        short s = -15;
         long l = 213123123123123123L;
         float fl = 3.21f;
         double d = 3.123123423432421;
         boolean bl = true;
-        LOG.debug("User info name : {}, age : {}, f : {}, b : {}, l : {}, fl : {}, d : {}, bl : {},", name, age, f, b, l, fl, d, bl);
+        LOG.debug("User info name : {}, age : {}, char : {}, byte : {}, short : {}, long : {}, float : {}, double : {}, boolean : {},", name, age, f, b, s, l, fl, d, bl);
     }
 }
