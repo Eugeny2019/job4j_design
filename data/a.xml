@@ -1,0 +1,15 @@
+<?xml version="1.1" encoding="UTF-8" ?>
+<class>
+    <id>15</id>
+    <name>Ivan</name>
+    sex="boolean"
+    age="20"
+    <contact>
+        phone="string"
+    </contact>
+    <statuses>
+        <status>Worker</status>
+        <status>Married</status>
+    </statuses>
+    <referral authors="class"/>
+</class>
