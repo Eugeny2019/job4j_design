@@ -2,8 +2,7 @@
 <class>
     <id>15</id>
     <name>Ivan</name>
-    sex="boolean"
-    age="20"
+    <subclass sex="boolean" age="20"/>
     <contact>
         phone="string"
     </contact>
