@@ -3,9 +3,7 @@
     <id>15</id>
     <name>Ivan</name>
     <subclass sex="boolean" age="20"/>
-    <contact>
-        phone="string"
-    </contact>
+    <phone>string</phone>
     <statuses>
         <status>Worker</status>
         <status>Married</status>
