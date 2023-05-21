@@ -5,7 +5,6 @@ import org.json.JSONObject;
 public class B {
     private A a;
 
-//    @JSONPropertyIgnore
     public A getA() {
         return a;
     }
