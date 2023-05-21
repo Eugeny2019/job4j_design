@@ -3,7 +3,6 @@ package ru.job4j.serialization.json;
 public class Contact {
 
     private final String phone;
-    private Person person;
 
     public Contact(String phone) {
         this.phone = phone;

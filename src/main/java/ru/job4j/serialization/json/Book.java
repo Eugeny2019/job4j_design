@@ -16,10 +16,26 @@ public class Book {
         this.authors = authors;
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Person getReferral() {
+        return referral;
+    }
+
+    public String[] getAuthors() {
+        return authors;
+    }
+
     public static void main(String[] args) {
         Book book = new Book(15155,
                 "Rdkjf fdlkh dskfjhf dfgjkh jdd dkh sdahhjkdfkiywkh fdfhoiuwf'",
-                new Person(false, 30, new Contact("11-111"), new String[] {"Worker", "Married"}),
+                new Person(false, 30, new Contact("11-111"), "Worker", "Married"),
                 new String[]{"F.S.Djhsajk", "A.B.Cdsklhdjk"});
         final Gson gson = new GsonBuilder().create();
         String bookInJson = gson.toJson(book);

@@ -19,10 +19,13 @@ public class MainJsovJava {
         JSONArray jsonStatuses = new JSONArray(list);
 
         /* JSONObject напрямую методом put */
-        final Person person = new Person(false, 30, new Contact("11-111"), "Worker", "Married");
+        final Book book = new Book(15155,
+                "Rdkjf fdlkh dskfjhf dfgjkh jdd dkh sdahhjkdfkiywkh fdfhoiuwf'",
+                new Person(false, 40, new Contact("11-111"), "Worker", "Married"),
+                new String[]{"F.S.Djhsajk", "A.B.Cdsklhdjk"});
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("sex", person.isSex());
-        jsonObject.put("age", person.getAge());
+        jsonObject.put("id", book.getId());
+        jsonObject.put("name", book.getName());
         jsonObject.put("contact", jsonContact);
         jsonObject.put("statuses", jsonStatuses);
 
@@ -30,6 +33,6 @@ public class MainJsovJava {
         System.out.println(jsonObject.toString());
 
         /* Преобразуем объект person в json-строку */
-        System.out.println(new JSONObject(person).toString());
+        System.out.println(new JSONObject(book).toString());
     }
 }
