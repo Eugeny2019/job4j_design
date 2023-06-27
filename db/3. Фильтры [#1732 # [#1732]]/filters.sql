@@ -1,14 +1,14 @@
+create table type(
+    id serial primary key,
+    name varchar(255)
+);
+
 create table product(
     id serial primary key,
     name varchar(255),
 	type_id int references type(id),
 	expired_date date,
     price float
-);
-
-create table type(
-    id serial primary key,
-    name varchar(255)
 );
 
 insert into type (name) values ('сыр');
@@ -29,9 +29,7 @@ insert into product (name, type_id, expired_date, price) values ('Молоко �
 insert into product (name, type_id, expired_date, price) values ('Молоко ага вкусное', 2, '06.14.2023', 120);
 insert into product (name, type_id, expired_date, price) values ('Мороженое ванильное', 3, '08.07.2023', 20);
 insert into product (name, type_id, expired_date, price) values ('Мороженое сливочное', 3, '01.23.2024', 30);
-insert into product (name, type_id, expired_date, price) values ('Лук', 5, '08.01.2024', 30);
-
-select * from product;
+insert into product (name, type_id, expired_date, price) values ('Лук', 5, '01.08.2024', 30);
 
 
 select p.name, p.expired_date, p.price from product p, type t where p.type_id=t.id and t.name='сыр';
