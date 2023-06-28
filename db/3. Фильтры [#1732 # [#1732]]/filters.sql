@@ -24,9 +24,11 @@ insert into product (name, type_id, expired_date, price) values ('Сыр гау�
 insert into product (name, type_id, expired_date, price) values ('Сыр плавленный', 1, '06.25.2023', 100);
 insert into product (name, type_id, expired_date, price) values ('Сыр моцарелла', 1, '07.02.2023', 900);
 insert into product (name, type_id, expired_date, price) values ('Сыр царский', 1, '08.05.2023', 1400);
+insert into product (name, type_id, expired_date, price) values ('Сыр царский еще один', 1, '08.05.2023', 1400);
 insert into product (name, type_id, expired_date, price) values ('Молоко стремное', 2, '09.15.2023', 100);
 insert into product (name, type_id, expired_date, price) values ('Молоко ни че так', 2, '11.18.2023', 82);
-insert into product (name, type_id, expired_date, price) values ('Молоко ага вкусное', 2, '06.14.2023', 120);
+insert into product (name, type_id, expired_date, price) values ('Молоко вкусное', 2, '06.14.2023', 120);
+insert into product (name, type_id, expired_date, price) values ('Молоко вкусное еще одно', 2, '07.14.2023', 120);
 insert into product (name, type_id, expired_date, price) values ('Мороженое ванильное', 3, '08.07.2023', 20);
 insert into product (name, type_id, expired_date, price) values ('Мороженое сливочное', 3, '01.23.2024', 30);
 insert into product (name, type_id, expired_date, price) values ('Лук', 5, '01.08.2024', 30);
@@ -40,6 +42,8 @@ select p.name, p.expired_date, p.price from product p where p.expired_date < CUR
 
 select p.name, max(p.price) from product p
 group by p.name;
+
+select product.name, product.price from product where product.price = (select max(p.price) pr from product p);
 
 select t.name, count(t.name) from type t
 join product p on (t.id=p.type_id)
