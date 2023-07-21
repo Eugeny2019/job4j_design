@@ -39,14 +39,10 @@ public class Config {
     }
 
     private void parseLines(String s) {
-        if (s.isEmpty()) {
-            return;
-        }
         values.put(s.substring(0, s.indexOf("=")).trim(), s.substring(s.indexOf("=") + 1).trim());
     }
 
     public String value(String key) {
-//        throw new UnsupportedOperationException("Don't impl this method yet!");
         return values.get(key);
     }
 
