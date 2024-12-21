@@ -1,0 +1,7 @@
+user > dfsfg
+bot > заметано
+user > sdfgad
+bot > Вы берете точку
+user > fзакончить
+bot > Враг замечен
+user > закончить

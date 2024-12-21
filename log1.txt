@@ -1,0 +1,17 @@
+C:\Users\eu\IdeaProjects\job4j_design\.idea\checkstyleidea-libs\readme.txt
+C:\Users\eu\IdeaProjects\job4j_design\data\botAnswers.txt
+C:\Users\eu\IdeaProjects\job4j_design\data\correspondence.txt
+C:\Users\eu\IdeaProjects\job4j_design\data\dataOutput.txt
+C:\Users\eu\IdeaProjects\job4j_design\data\dataresult.txt
+C:\Users\eu\IdeaProjects\job4j_design\data\even.txt
+C:\Users\eu\IdeaProjects\job4j_design\data\input.txt
+C:\Users\eu\IdeaProjects\job4j_design\data\log.txt
+C:\Users\eu\IdeaProjects\job4j_design\data\message.txt
+C:\Users\eu\IdeaProjects\job4j_design\data\multiplication_table.txt
+C:\Users\eu\IdeaProjects\job4j_design\data\newData.txt
+C:\Users\eu\IdeaProjects\job4j_design\data\output.txt
+C:\Users\eu\IdeaProjects\job4j_design\data\print.txt
+C:\Users\eu\IdeaProjects\job4j_design\data\random.txt
+C:\Users\eu\IdeaProjects\job4j_design\data\result.txt
+C:\Users\eu\IdeaProjects\job4j_design\data\write.txt
+C:\Users\eu\IdeaProjects\job4j_design\log1.txt
